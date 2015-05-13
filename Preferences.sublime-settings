@@ -1,0 +1,14 @@
+{
+	"color_scheme": "Packages/Theme - Brogrammer/brogrammer.tmTheme",
+	"draw_white_space": "all",
+	"font_face": "InputMono Light",
+	"font_size": 11,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"tab_size": 2,
+	"rulers": [80],
+	"theme": "Brogrammer.sublime-theme",
+	"translate_tabs_to_spaces": true
+}
