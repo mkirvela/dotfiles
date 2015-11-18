@@ -1,59 +1,193 @@
-if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-   set fileencodings=utf-8,latin1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General
+" mostly ripped off from
+" https://github.com/nburkley/dotfiles/blob/master/vimrc
+" Kudos!
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Use Vim settings, rather then Vi settings.
+set nocompatible
+
+" set character encoding to utf-8
+scriptencoding utfs8
+set encoding=utf-8
+
+" don't use swap files
+set noswapfile
+
+" Reload files if changed outside vim
+set autoread
+
+" use filetype detection
+filetype plugin indent on
+
+" Softtabs, 2 spaces
+set tabstop=2
+set shiftwidth=2
+set shiftround
+set expandtab
+
+" Share the clipboard outside of macvim
+set clipboard=unnamed
+
+" Auto format any pasted text
+nnoremap P P=`]
+nnoremap p p=`]
+
+" don't use vim backup files
+set nobackup
+set nowritebackup
+
+" Use plugins install by vundle
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
 endif
 
-set nocompatible	" Use Vim defaults (much better!)
-set bs=2		" allow backspacing over everything in insert mode
-"set ai			" always set autoindenting on
-"set backup		" keep a backup file
-set viminfo='20,\"50	" read/write a .viminfo file, don't store more
-			" than 50 lines of registers
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
+" Enable spellchecking for Markdown files and git commit messages
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
 
-" Only do this part when compiled with support for autocommands
-if has("autocmd")
-  " In text files, always limit the width of text to 78 characters
-  autocmd BufRead *.txt set tw=78
-  " When editing a file, always jump to the last cursor position
-  autocmd BufReadPost *
-  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-  \   exe "normal! g'\"" |
-  \ endif
-endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Look and feel
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if has("cscope") && filereadable("/usr/bin/cscope")
-   set csprg=/usr/bin/cscope
-   set csto=0
-   set cst
-   set nocsverb
-   " add any database in current directory
-   if filereadable("cscope.out")
-      cs add cscope.out
-   " else add database pointed to by environment
-   elseif $CSCOPE_DB != ""
-      cs add $CSCOPE_DB
-   endif
-   set csverb
-endif
+" set font to Source Code Pro, patched for Powerline, size 13
+set gfn=Source\ Code\ Pro\ for\ Powerline:h13
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
+if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
-  set hlsearch
-  set background=dark
 endif
 
-" ilmeisesti hilitee thtml:n
-au BufRead,BufNewFile *.thtml set filetype=php
-au BufRead,BufNewFile *.ctp set filetype=php
+" Display extra whitespace
+set list listchars=tab:»·,trail:·,nbsp:·
 
-if &term=="xterm"
-     set t_Co=8
-     set t_Sb=[4%dm
-     set t_Sf=[3%dm
+set ruler               " set ruler
+set number              " add line numbers
+"set colorcolumn=80      " add line marker at 80 characters
+colorscheme molokai     " use railscasts colorscheme
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mappings and shortcuts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" use space as leader key
+let mapleader = " "
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Searching and indexing
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases
+set smartcase
+
+" Highlight search results
+set hlsearch
+
+" Makes search act like search in modern browsers
+set incsearch
+
+" set some directories to be ignored
+" set wildignore+=tmp/**
+" set wildignore+=public/uploads/**
+" set wildignore+=public/images/**
+" set wildignore+=vendor/**
+" set wildignore+=log/**
+" set wildignore+=spec/support/vcr_cassettes/**
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Windows, buffers & navigation
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Make arrowkey do something usefull, resize the viewports accordingly
+nnoremap <Left> :vertical resize -2<CR>
+nnoremap <Right> :vertical resize +2<CR>
+nnoremap <Up> :resize -2<CR>
+nnoremap <Down> :resize +2<CR>
+
+" Better split defaults
+set splitbelow
+set splitright
+
+" Buffers
+" This allows buffers to be hidden if you've modified a buffer.
+set hidden
+
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
+nmap <leader>t :enew<cr>
+
+" Move to the next buffer
+nmap <leader>l :bnext<cr>
+
+" Move to the previous buffer
+nmap <leader>h :bprevious<cr>
+
+" Close the current buffer and move to the previous one
+nmap <leader>q :bp <bar> bd #<cr>
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" plugin setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" nerdtree
+map <leader>n :NERDTreeToggle<CR>
+map <leader>r :NERDTreeFind<CR>
+
+" vim-airline
+let g:airline_theme='molokai'
+" disable tagline
+let g:airline#extensions#tagbar#enabled = 1
+
+" enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+let g:airline_powerline_fonts=1
+
+" Airline with Unicode (for MacVim)
+if has("gui_macvim")
+  let g:airline_left_sep = '▶'
+  let g:airline_right_sep = '◀'
+  let g:airline_symbols.linenr = '¶'
+  let g:airline_symbols.branch = '⬍'
+  let g:airline_symbols.paste = '✂'
+  let g:airline_symbols.whitespace = 'Ξ'
 endif
-set tabstop=4
-set expandtab
-:map <F5> :set nowrap! <CR>
+
+" Tabline looks better
+let g:airline#extensions#tabline#enabled = 1
+
+" ctrl-p
+" add ctr-b as shortcut for buffer search
+nnoremap <leader>b :CtrlPBuffer<CR>
+
+" ignore some files and file types when indexing
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|public\/images\|public\/system\|data\|log\|spec\/support\/vcr_cassettes\|tmp$',
+  \ 'file': '\.exe$\|\.so$\|\.dat$'
+  \ }
+
+" User the silver searcher with Ctrl-P if it's available
+if executable('ag')
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+"incsearch
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
