@@ -24,15 +24,16 @@ filetype plugin indent on
 " Softtabs, 2 spaces
 set tabstop=2
 set shiftwidth=2
-set shiftround
-set expandtab
-
+set autoindent                  " Set the cursor at same indent as line above
+set copyindent                  " Use existing indents for new indents
+set shiftround                  " Always round indents to multiple of shiftwidth
+set expandtab                   " Prefer spaces to tabs by default
 " Share the clipboard outside of macvim
 set clipboard=unnamed
 
 " Auto format any pasted text
-nnoremap P P=`]
-nnoremap p p=`]
+"nnoremap P P=`]
+"nnoremap p p=`]
 
 " don't use vim backup files
 set nobackup
@@ -52,7 +53,7 @@ autocmd FileType gitcommit setlocal spell
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " set font to Source Code Pro, patched for Powerline, size 13
-set gfn=Source\ Code\ Pro\ for\ Powerline:h13
+set gfn=Hack:h13
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -65,8 +66,8 @@ set list listchars=tab:»·,trail:·,nbsp:·
 
 set ruler               " set ruler
 set number              " add line numbers
-"set colorcolumn=80      " add line marker at 80 characters
-colorscheme molokai     " use railscasts colorscheme
+"set colorcolumn=80     " add line marker at 80 characters
+colorscheme molokai     " use molokai colorscheme
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings and shortcuts
@@ -105,9 +106,12 @@ set incsearch
 
 " Make arrowkey do something usefull, resize the viewports accordingly
 nnoremap <Left> :vertical resize -2<CR>
-nnoremap <Right> :vertical resize +2<CR>
+nnoremap <Right> :vertical resize ;+2<CR>
 nnoremap <Up> :resize -2<CR>
 nnoremap <Down> :resize +2<CR>
+" taken form https://github.com/rhysd/accelerated-jk
+"nmap j <Plug>(accelerated_jk_gj)
+"nmap k <Plug>(accelerated_jk_gk)
 
 " Better split defaults
 set splitbelow
@@ -122,10 +126,12 @@ set hidden
 nmap <leader>t :enew<cr>
 
 " Move to the next buffer
-nmap <leader>l :bnext<cr>
+"nmap <leader>l :bnext<cr>
+nnoremap <leader>l :bnext<cr>
 
 " Move to the previous buffer
-nmap <leader>h :bprevious<cr>
+"nmap <leader>h :bprevious<cr>
+nnoremap <leader>h :bprevious<cr>
 
 " Close the current buffer and move to the previous one
 nmap <leader>q :bp <bar> bd #<cr>
@@ -155,13 +161,15 @@ let g:airline_powerline_fonts=1
 
 " Airline with Unicode (for MacVim)
 if has("gui_macvim")
-  let g:airline_left_sep = '▶'
-  let g:airline_right_sep = '◀'
-  let g:airline_symbols = {}
-  let g:airline_symbols.liner = '¶'
-  let g:airline_symbols.branch = '⬍'
-  let g:airline_symbols.paste = '✂'
-  let g:airline_symbols.whitespace = 'Ξ'
+  :nnoremap <Tab> :bnext<CR>
+  :nnoremap <S-Tab> :bprevious<CR>
+  "let g:airline_left_sep = '▶'
+  "let g:airline_right_sep = '◀'
+  "let g:airline_symbols = {}
+  "let g:airline_symbols.liner = '¶'
+  "let g:airline_symbols.branch = '⬍'
+  "let g:airline_symbols.paste = '✂'
+  "let g:airline_symbols.whitespace = 'Ξ'
 endif
 
 " Tabline looks better
@@ -186,6 +194,8 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
+"ack setup
+let g:ackhighlight = 1
 "incsearch
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)

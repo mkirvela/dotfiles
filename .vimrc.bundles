@@ -18,6 +18,10 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'tpope/vim-fireplace'
 Plugin 'blueyed/vim-diminactive'
 Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-surround'
+Plugin 'mxw/vim-jsx'
+Plugin 'mileszs/ack.vim'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
