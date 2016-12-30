@@ -7,6 +7,7 @@
 
 " Use Vim settings, rather then Vi settings.
 set nocompatible
+set backspace=2
 
 " set character encoding to utf-8
 scriptencoding utfs8
@@ -28,8 +29,15 @@ set autoindent                  " Set the cursor at same indent as line above
 set copyindent                  " Use existing indents for new indents
 set shiftround                  " Always round indents to multiple of shiftwidth
 set expandtab                   " Prefer spaces to tabs by default
+set wildmenu                    " autocomplete list for filesearch
+set lazyredraw                  " redraw only when we need to.
+set showmatch                   " highlight matching [{()}]
+
 " Share the clipboard outside of macvim
-set clipboard=unnamed
+" set clipboard=unnamed
+
+" mouse setting (don't copy linenumbers)
+" set mouse=a
 
 " Auto format any pasted text
 "nnoremap P P=`]
@@ -66,9 +74,9 @@ set list listchars=tab:»·,trail:·,nbsp:·
 
 set ruler               " set ruler
 set number              " add line numbers
+"set relativenumber
 "set colorcolumn=80     " add line marker at 80 characters
 colorscheme molokai     " use molokai colorscheme
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings and shortcuts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -93,7 +101,8 @@ set hlsearch
 set incsearch
 
 " set some directories to be ignored
-" set wildignore+=tmp/**
+set wildignore+=tmp/**
+set wildignore+=dist/**
 " set wildignore+=public/uploads/**
 " set wildignore+=public/images/**
 " set wildignore+=vendor/**
@@ -105,10 +114,10 @@ set incsearch
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Make arrowkey do something usefull, resize the viewports accordingly
-nnoremap <Left> :vertical resize -2<CR>
-nnoremap <Right> :vertical resize ;+2<CR>
-nnoremap <Up> :resize -2<CR>
-nnoremap <Down> :resize +2<CR>
+" nnoremap <Left> :vertical resize +2<CR>
+" nnoremap <Right> :vertical resize -2<CR>
+" nnoremap <Up> :resize -2<CR>
+" nnoremap <Down> :resize +2<CR>
 " taken form https://github.com/rhysd/accelerated-jk
 "nmap j <Plug>(accelerated_jk_gj)
 "nmap k <Plug>(accelerated_jk_gk)
@@ -147,6 +156,8 @@ nnoremap <leader><leader> <c-^>
 map <leader>n :NERDTreeToggle<CR>
 map <leader>r :NERDTreeFind<CR>
 
+" highlight the line the cursor is on
+set cursorline
 " vim-airline
 let g:airline_theme='molokai'
 " disable tagline
@@ -181,7 +192,7 @@ nnoremap <leader>b :CtrlPBuffer<CR>
 
 " ignore some files and file types when indexing
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|public\/images\|public\/system\|data\|log\|spec\/support\/vcr_cassettes\|tmp$',
+  \ 'dir':  '\.git$\|\.hg$\|public\/images\|public\/system\|data\|log\|spec\/support\/vcr_cassettes\|/node_modules\|tmp$',
   \ 'file': '\.exe$\|\.so$\|\.dat$'
   \ }
 
@@ -202,3 +213,5 @@ map g/ <Plug>(incsearch-stay)
 
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
+command Diff execute 'w !git diff --no-index % -'
+let g:syntastic_javascript_checkers = ['eslint']
