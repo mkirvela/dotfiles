@@ -77,6 +77,12 @@ set number              " add line numbers
 "set relativenumber
 "set colorcolumn=80     " add line marker at 80 characters
 colorscheme molokai     " use molokai colorscheme
+
+" don't highlight row when in insert mode
+autocmd InsertEnter,InsertLeave * set cul!
+" highlight the line the cursor is on
+set cursorline
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings and shortcuts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -156,18 +162,17 @@ nnoremap <leader><leader> <c-^>
 map <leader>n :NERDTreeToggle<CR>
 map <leader>r :NERDTreeFind<CR>
 
-" highlight the line the cursor is on
-set cursorline
 " vim-airline
 let g:airline_theme='molokai'
+
 " disable tagline
 let g:airline#extensions#tagbar#enabled = 1
 
 " enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
+
 " show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-
 let g:airline_powerline_fonts=1
 
 " Airline with Unicode (for MacVim)
@@ -207,6 +212,7 @@ endif
 
 "ack setup
 let g:ackhighlight = 1
+
 "incsearch
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
@@ -214,4 +220,6 @@ map g/ <Plug>(incsearch-stay)
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
 command Diff execute 'w !git diff --no-index % -'
+
+" use eslint to lint js
 let g:syntastic_javascript_checkers = ['eslint']
