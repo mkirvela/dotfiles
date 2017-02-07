@@ -16,12 +16,17 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'guns/vim-clojure-static'
 Plugin 'tpope/vim-fireplace'
-Plugin 'blueyed/vim-diminactive'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'mxw/vim-jsx'
 Plugin 'mileszs/ack.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'janko-m/vim-test'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'pangloss/vim-javascript'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
