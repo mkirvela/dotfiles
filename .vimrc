@@ -223,3 +223,7 @@ command Diff execute 'w !git diff --no-index % -'
 
 " use eslint to lint js
 let g:syntastic_javascript_checkers = ['eslint']
+
+" get rid of | between panes. Note! Meaningful whitespace at the end
+set fillchars+=vert:\ 
+hi VertSplit ctermbg=236
