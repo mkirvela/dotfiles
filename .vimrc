@@ -179,13 +179,13 @@ let g:airline_powerline_fonts=1
 if has("gui_macvim")
   :nnoremap <Tab> :bnext<CR>
   :nnoremap <S-Tab> :bprevious<CR>
-  "let g:airline_left_sep = '▶'
-  "let g:airline_right_sep = '◀'
-  "let g:airline_symbols = {}
-  "let g:airline_symbols.liner = '¶'
-  "let g:airline_symbols.branch = '⬍'
-  "let g:airline_symbols.paste = '✂'
-  "let g:airline_symbols.whitespace = 'Ξ'
+  let g:airline_left_sep = '▶'
+  let g:airline_right_sep = '◀'
+  let g:airline_symbols = {}
+  let g:airline_symbols.liner = '¶'
+  let g:airline_symbols.branch = '⬍'
+  let g:airline_symbols.paste = '✂'
+  let g:airline_symbols.whitespace = 'Ξ'
 endif
 
 " Tabline looks better
@@ -227,3 +227,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 " get rid of | between panes. Note! Meaningful whitespace at the end
 set fillchars+=vert:\ 
 hi VertSplit ctermbg=236
+
+" change shape of cursor in insert mode in iTerm 2
+
+if $TERM_PROGRAM =~ "iTerm"
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI    = "\<Esc>]50;CursorShape=0\x7"
+endif

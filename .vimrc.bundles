@@ -27,6 +27,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'janko-m/vim-test'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'pangloss/vim-javascript'
+Plugin 'junegunn/goyo.vim'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
