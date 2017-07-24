@@ -28,6 +28,10 @@ Plugin 'janko-m/vim-test'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'pangloss/vim-javascript'
 Plugin 'junegunn/goyo.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'rakr/vim-one'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
