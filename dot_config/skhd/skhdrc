@@ -1,0 +1,5 @@
+# map § to toggle kitty visibility
+0x0A [
+  "kitty" : skhd -k "cmd - tab"
+  * : osascript -e 'tell application "Kitty" to activate' 
+]
