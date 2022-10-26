@@ -8,7 +8,6 @@ export ZSH=/Users/matias.kirvela/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="custom/robbyrussell"
-#ZSH_THEME="spaceship"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -89,14 +88,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias markoff="open -a Markoff"
-alias tmux="env TERM=xterm-256color tmux"
-#test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
-#source "/Users/matias/src/ElementsOfChance/scripts/eoc-env.sh"
-#export ANSIBLE_VAULT_PASSWORD_FILE="/Users/matias/.ansible_vault_password"
-#export ANSIBLE_VAULT_PASSWORD=Hi6outhuiri5zieteusu
-#export ERL_AFLAGS="-kernel shell_history enabled"
-
 
 #function read_aws_credential() {
 #    python - "$1" "$2" <<END
@@ -150,7 +141,16 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export LANG="en_US.UTF-8"
-# for kitty
+
+## Aliases
+# test fonts when starting a new shell
+alias testcolors='echo -e "Testing fonts and colors: \e[1mbold\e[0m, \e[3mitalic\e[0m, \e[4munderline\e[0m, \e[9mstrikethrough\e[0m, \033[1;31mred\033[0m, \033[1;32mgreen\033[0m, \033[1;34mblue\033[0m"'
+# Kitty hyperlinked grep
 alias hg="kitty +kitten hyperlinked_grep"
-alias ls="gls --hyperlink=auto --color"
+
+# if gls is installed, use alias ls to use hyperlinks automatically
+if command -v gls 2>&1 >/dev/null; then
+    # exa is our friend :)
+  alias ls="gls --hyperlink=auto --color"
+fi
 #eval "$(starship init zsh)"
