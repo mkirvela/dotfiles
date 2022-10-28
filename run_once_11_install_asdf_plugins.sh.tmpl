@@ -1,0 +1,20 @@
+{{ if eq .chezmoi.os "darwin" -}}
+
+#!/bin/sh
+
+echo "Add asdf plugins"
+asdf plugin add java
+asdf install java adoptopenjdk-11.0.8+10
+asdf install java adoptopenjdk-15.0.2+7
+
+asdf plugin add terraform
+asdf install terraform 0.14.5
+asdf install terraform 1.0.9
+
+asdf plugin add ruby
+asdf install ruby 2.6.2
+
+asdf plugin add gradle
+asdf install gradle 6.5
+
+{{ end -}}

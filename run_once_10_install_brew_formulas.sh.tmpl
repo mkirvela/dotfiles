@@ -1,3 +1,4 @@
+{{ if eq .chezmoi.os "darwin" -}}
 #!/bin/sh
 
 echo "Starting homebrew preparations.."
@@ -43,3 +44,4 @@ mas "Xcode", id: 497799835
 ' | brew bundle install --no-upgrade --file=-
 
 echo ""
+{{ end -}}
