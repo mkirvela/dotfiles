@@ -4,6 +4,9 @@ export PATH=$HOME/bin:/usr/local/bin:$HOME/Library/Python/2.7/bin:/usr/bin/pytho
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/matias.kirvela/.oh-my-zsh
 
+# don't let your ssh-keys propagate to iCloud
+export APPLE_SSH_ADD_BEHAVIOR=openssh
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -42,7 +45,7 @@ ZSH_THEME="custom/robbyrussell"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -133,9 +136,6 @@ export SVN_SSH="ssh -i ~/.ssh/id_rsa_svn"
 export LESS="-XR"
 #eval "$(rbenv init -)"
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-
 #. /usr/local/opt/asdf/asdf.sh
 #. ~/.asdf/plugins/java/set-java-home.zsh
 
@@ -150,7 +150,9 @@ alias hg="kitty +kitten hyperlinked_grep"
 
 # if gls is installed, use alias ls to use hyperlinks automatically
 if command -v gls 2>&1 >/dev/null; then
-    # exa is our friend :)
   alias ls="gls --hyperlink=auto --color"
 fi
+
 #eval "$(starship init zsh)"
+
+alias ssh="kitty +kitten ssh"

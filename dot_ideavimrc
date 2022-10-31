@@ -1,0 +1,29 @@
+"set relativenumber
+"set number
+set set highlightedyank
+set NERDTree
+set surround
+let mapleader = " "
+set ignorecase
+set smartcase
+set showmode
+set history=1000
+set incsearch
+set hlsearch
+set visualbell
+
+" code navigation
+nnoremap <space>U :action FindUsages<cr>
+nnoremap <space>u :action ShowUsages<cr>
+nnoremap <space>k :action HighlightUsagesInFile<cr>
+nnoremap <C-o> :action Back<cr>
+nnoremap <C-i> :action Forward<cr>
+" visual select the whole file
+nnoremap <leader>a ggVG
+nmap <leader>l :action RecentLocations<cr>
+nmap <leader>x :action GotoNextError<cr>
+nmap <leader>X :action GotoPreviousError<cr>
+nmap <leader>i :action GotoImplementation<cr>
+
+nmap T :action Refactorings.QuickListPopupAction<cr>
+vmap = :action ReformatCode<cr>

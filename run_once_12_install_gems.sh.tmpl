@@ -1,0 +1,24 @@
+{{ if eq .chezmoi.os "darwin" -}}
+
+#!/bin/sh
+
+gem install bundler
+gem install capistrano -v 2.15.9
+
+# Install AWS SDK v1 and v3
+gem install aws-sdk-v1 -v '>=1.67.0'
+gem install aws-sdk -v '>=3, <4'
+
+# Install support for ed25519 ssh keys
+gem install ed25519 -v '>= 1.2, < 2.0'
+gem install bcrypt_pbkdf -v '>= 1.0, < 2.0'
+
+gem install pry
+gem install parallel
+gem install colorize
+
+# net-ssh 6.1.0 doesn't work, it needs to be downgraded to 5.2.0 (getting error (ArgumentError: invalid option(s): strict_host_key_checking))
+gem uninstall net-ssh
+gem install net-ssh --version 5.2.0
+
+{{ end -}}
