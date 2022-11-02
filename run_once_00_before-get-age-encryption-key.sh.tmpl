@@ -1,0 +1,10 @@
+{{ if eq .chezmoi.os "darwin" -}}
+
+#!/bin/sh
+if [ ! -f $HOME/age_key.txt ]; then
+  echo "Getting age encryption key from 1password"
+  op document get uhriiu4rnlsb7fc4vhcc3webry --output $HOME/age_key.txt
+else
+  echo "Encryption key age_key.txt already in place"
+fi
+{{ end -}}
