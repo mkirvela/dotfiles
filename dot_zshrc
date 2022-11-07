@@ -2,7 +2,8 @@
 export PATH=$HOME/bin:/usr/local/bin:$HOME/Library/Python/2.7/bin:/usr/bin/python:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/matias.kirvela/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
+bindkey '^ ' autosuggest-accept
 
 # don't let your ssh-keys propagate to iCloud
 export APPLE_SSH_ADD_BEHAVIOR=openssh
