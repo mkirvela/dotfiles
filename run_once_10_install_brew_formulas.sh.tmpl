@@ -1,5 +1,7 @@
-{{ if eq .chezmoi.os "darwin" -}}
 #!/bin/sh
+echo "Homebrew installations"
+
+{{ if eq .chezmoi.os "darwin" -}}
 
 echo "Starting homebrew preparations.."
 echo ""
