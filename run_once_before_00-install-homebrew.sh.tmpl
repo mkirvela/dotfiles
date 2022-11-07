@@ -1,0 +1,30 @@
+{{ if eq .chezmoi.os "darwin" -}}
+
+#!/bin/sh
+set -o pipefail
+set -o errexit
+
+if which brew 2>&1 >/dev/null; then
+  echo "Homebrew is already installed, updating it."
+  brew update
+else
+  echo "Installing homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
+
+echo "Running brew doctor"
+if brew doctor; then
+  echo "Homebrew installation looks healthy"
+else
+  echo "Homebrew installation has potential issues"
+fi
+
+echo "Brewing mandatory casks for chezmoi templates"
+echo ""
+echo '
+cask "1password"
+cask "1password-cli"
+' | brew bundle install --no-upgrade --file=-
+
+echo ""
+{{ end -}}
