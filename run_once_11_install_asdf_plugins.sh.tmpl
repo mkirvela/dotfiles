@@ -2,6 +2,13 @@
 
 #!/bin/sh
 
+if which asdf 2>&1 >/dev/null; then
+  echo "Found asdf in PATH"
+else
+  echo "asdf should be installed, but not in PATH.. adding it"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 echo "Add asdf plugins"
 asdf plugin add java
 asdf install java adoptopenjdk-11.0.8+10
