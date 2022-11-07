@@ -7,3 +7,4 @@
     type = "archive"
     url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
     exact = true
+    stripComponents = 1
