@@ -13,8 +13,10 @@ fi
 
 echo "Add asdf plugins"
 asdf plugin add java
-asdf install java adoptopenjdk-11.0.8+10
-asdf install java adoptopenjdk-15.0.2+7
+#asdf install java adoptopenjdk-11.0.8+10
+asdf install java latest:adoptopenjdk-11
+#asdf install java adoptopenjdk-15.0.2+7
+asdf install java latest:adoptopenjdk-15
 
 asdf plugin add terraform
 asdf install terraform 0.14.5
