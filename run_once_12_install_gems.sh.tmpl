@@ -1,4 +1,4 @@
-{{ if eq .chezmoi.os "darwin" -}}
+{{ if eq .chezmoi.os "foo" -}}
 
 #!/bin/sh
 
@@ -21,4 +21,6 @@ gem install colorize
 gem uninstall net-ssh
 gem install net-ssh --version 5.2.0
 
+{{ else }}
+echo "Gem installation disabled for now"
 {{ end -}}
