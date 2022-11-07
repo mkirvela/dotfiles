@@ -4,6 +4,7 @@ echo "Homebrew installations"
 {{ if eq .chezmoi.os "darwin" -}}
 
 echo "Starting homebrew preparations.."
+eval "$(/opt/homebrew/bin/brew shellenv)"
 echo ""
 echo '
 tap "homebrew/bundle"
