@@ -7,6 +7,8 @@ if which asdf 2>&1 >/dev/null; then
 else
   echo "asdf should be installed, but not in PATH.. adding it"
   eval "$(/opt/homebrew/bin/brew shellenv)"
+  # also source zsh
+  source ~/.zshrc
 fi
 
 echo "Add asdf plugins"
