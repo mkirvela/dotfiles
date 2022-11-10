@@ -1,4 +1,4 @@
-java adoptopenjdk-11.0.8+10
+java adoptopenjdk-17.0.4+101
 ruby 2.6.2
 terraform 1.0.9
 gradle 6.5
