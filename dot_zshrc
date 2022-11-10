@@ -157,3 +157,5 @@ fi
 #eval "$(starship init zsh)"
 
 alias ssh="kitty +kitten ssh"
+# having autoupdates on for omz confuses chezmoi
+DISABLE_AUTO_UPDATE="true"
