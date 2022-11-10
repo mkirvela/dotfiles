@@ -8,3 +8,21 @@
     url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
     exact = true
     stripComponents = 1
+[".vim/pack/plugin/start/nord-vim"]
+    type = "git-repo"
+    url = "https://github.com/arcticicestudio/nord-vim.git"
+[".vim/pack/plugin/start/vim-airline"]
+    type = "git-repo"
+    url = "https://github.com/vim-airline/vim-airline.git"
+[".vim/pack/plugin/start/vim-airline-themes"]
+    type = "git-repo"
+    url = "https://github.com/vim-airline/vim-airline-themes.git"
+[".vim/pack/plugin/start/vim-fugitive"]
+    type = "git-repo"
+    url = "https://github.com/tpope/vim-fugitive.git"
+[".vim/pack/plugin/start/editorconfig-vim"]
+    type = "git-repo"
+    url = "https://github.com/editorconfig/editorconfig-vim.git"
+[".vim/pack/plugin/start/nerdtree"]
+    type = "git-repo"
+    url = "https://github.com/preservim/nerdtree"

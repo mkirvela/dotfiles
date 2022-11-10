@@ -5,15 +5,13 @@ set -o pipefail
 set -o errexit
 
 if which brew 2>&1 >/dev/null; then
-  echo "Homebrew is already installed, updating it."
-  brew update
+  echo "Homebrew is already installed, you should manually update with: brew update"
 else
   echo "Installing homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  eval "\$($(brew --prefix)/bin/brew shellenv)"
 fi
 
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 echo "Running brew doctor"
 if brew doctor; then
