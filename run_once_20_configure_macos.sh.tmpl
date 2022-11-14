@@ -79,5 +79,11 @@ for app in "Activity Monitor" \
 	killall "${app}" &> /dev/null
 done
 
-echo "Setting up fzf completions"
-$(brew --prefix)/opt/fzf/install
+{{ if eq .chezmoi.os "darwin" -}}
+  if [ ! -f $HOME/.fzf.zsh ]; then
+    echo "Setting up fzf completions"
+    $(brew --prefix)/opt/fzf/install
+  else
+    echo "fzf completions already setup."
+  fi
+{{ end -}}
